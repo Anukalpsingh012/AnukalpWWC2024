@@ -1,0 +1,63 @@
+------------Scheduling Ads for a Social Media Platform-------
+
+Aim:
+To sort advertisements based on bid amount using the Quick Sort algorithm to maximize revenue and user satisfaction.
+
+Requirements:
+
+Unsorted array of bid amounts.
+Quick Sort algorithm for sorting.
+Output sorted ads to schedule in real-time.
+
+Code :
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] > pivot) { // Descending order for higher bids first
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    vector<int> bids = {100, 200, 150, 250, 180}; // Unsorted bid amounts
+
+    cout << "Unsorted Bids: ";
+    for (int bid : bids)
+        cout << bid << " ";
+    cout << endl;
+
+    quickSort(bids, 0, bids.size() - 1);
+
+    cout << "Sorted Bids: ";
+    for (int bid : bids)
+        cout << bid << " ";
+    cout << endl;
+
+    return 0;
+}
+
+OUTPUT :
+
+Unsorted Bids: 100 200 150 250 180 
+Sorted Bids: 250 200 180 150 100 //using quick sort
+
+
+=== Code Execution Successful ===

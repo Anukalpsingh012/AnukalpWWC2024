@@ -1,0 +1,62 @@
+-------Stock Market Data Analysis--------
+
+Aim:
+To sort stock market trades based on timestamps using Quick Sort for real-time data processing.
+
+Requirements:
+-Unsorted array of timestamps.
+-Quick Sort algorithm for sorting.
+-Output sorted trades to analyze patterns effectively.
+
+CODE : 
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    vector<int> timestamps = {1612325, 1612295, 1612400, 1612380, 1612330}; // Unsorted timestamps
+
+    cout << "Unsorted Timestamps: ";
+    for (int time : timestamps)
+        cout << time << " ";
+    cout << endl;
+
+    quickSort(timestamps, 0, timestamps.size() - 1);
+
+    cout << "Sorted Timestamps: ";
+    for (int time : timestamps)
+        cout << time << " ";
+    cout << endl;
+
+    return 0;
+}
+
+
+OUTPUT : 
+
+Unsorted Timestamps: 1612325 1612295 1612400 1612380 1612330 
+Sorted Timestamps: 1612295 1612325 1612330 1612380 1612400 //USING QUICK SORT
+
+
+=== Code Execution Successful ===

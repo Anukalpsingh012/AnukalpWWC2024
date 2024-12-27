@@ -1,0 +1,63 @@
+----------Hospital Resource Allocation-----
+
+Aim:
+To sort incoming patients based on triage priority using the Quick Sort algorithm to ensure life-threatening cases are prioritized.
+
+Requirements:
+
+Unsorted array of triage priorities.
+Quick Sort algorithm for sorting.
+Output sorted patients to manage resource allocation.
+
+CODE : 
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] > pivot) { // Descending order for high priority first
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    vector<int> priorities = {2, 5, 3, 4, 1}; // Unsorted triage priorities
+
+    cout << "Unsorted Priorities: ";
+    for (int priority : priorities)
+        cout << priority << " ";
+    cout << endl;
+
+    quickSort(priorities, 0, priorities.size() - 1);
+
+    cout << "Sorted Priorities: ";
+    for (int priority : priorities)
+        cout << priority << " ";
+    cout << endl;
+
+    return 0;
+}
+
+
+OUTPUT : 
+
+Unsorted Priorities: 2 5 3 4 1 
+Sorted Priorities: 5 4 3 2 1 //using quick sort
+
+
+=== Code Execution Successful ===

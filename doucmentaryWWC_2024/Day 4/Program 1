@@ -1,0 +1,64 @@
+----- Fraud Detection in Banking Transactions -----
+
+Aim:
+To sort banking transactions based on a suspiciousness score using the Quick Sort algorithm to flag high-risk transactions for review.
+
+Requirements:
+
+-Unsorted array of suspiciousness scores.
+-Quick Sort algorithm for sorting.
+-Output sorted transactions to prioritize high-risk cases.
+
+Code : 
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Function to partition the array
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+// Quick Sort function
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+// Main function
+int main() {
+    vector<int> transactions = {35, 10, 55, 20, 90, 40}; // Unsorted suspiciousness scores
+
+    cout << "Unsorted Suspiciousness Scores: ";
+    for (int score : transactions)
+        cout << score << " ";
+    cout << endl;
+
+    quickSort(transactions, 0, transactions.size() - 1);
+
+    cout << "Sorted Suspiciousness Scores: ";
+    for (int score : transactions)
+        cout << score << " ";
+    cout << endl;
+
+    return 0;
+}
+
+
+OUTPUT : 
+
+Unsorted Suspiciousness Scores: 35 10 55 20 90 40 
+Sorted Suspiciousness Scores: 10 20 35 40 55 90  // using quick sort

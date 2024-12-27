@@ -1,0 +1,63 @@
+---------Video Streaming Platform Recommendation System---------
+
+Aim:
+To sort the catalog of movies and TV shows based on popularity and recency using the Quick Sort algorithm to prioritize trending content.
+
+Requirements:
+
+Unsorted array of combined scores (popularity + recency).
+Quick Sort algorithm for sorting.
+Output sorted content to generate recommendations.
+
+CODE :
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] > pivot) { // Descending order for trending content
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    vector<int> scores = {85, 95, 75, 90, 80}; // Unsorted combined scores of popularity + recency
+
+    cout << "Unsorted Scores: ";
+    for (int score : scores)
+        cout << score << " ";
+    cout << endl;
+
+    quickSort(scores, 0, scores.size() - 1);
+
+    cout << "Sorted Scores: ";
+    for (int score : scores)
+        cout << score << " ";
+    cout << endl;
+
+    return 0;
+}
+
+
+OUTPUT :
+
+Unsorted Scores: 85 95 75 90 80 
+Sorted Scores: 95 90 85 80 75 //USING QUICKSORT
+
+
+=== Code Execution Successful ===
