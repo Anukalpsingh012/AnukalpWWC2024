@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Movie Audio Description</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Movie Audio Description System</h1>
+        <p>Enhancing movie experiences for visually impaired individuals.</p>
+    </header>
+
+    <main>
+        <!-- Upload Section -->
+        <section id="upload-section">
+            <h2>Upload Movie Script</h2>
+            <input type="file" id="script-upload" accept=".txt">
+            <button onclick="uploadScript()">Upload</button>
+            <button id="copy-text" onclick="copyText()" disabled>Copy Text</button>
+            <p id="upload-feedback"></p>
+            <div id="script-display"></div>
+        </section>
+
+        <!-- Preloaded Audio -->
+        <section id="preloaded-audio">
+            <h2>Preloaded Audio Descriptions</h2>
+            <div id="audio-controls">
+                <button onclick="playPreloadedAudio('Scene 1: Introduction')">Scene 1: Introduction</button>
+                <button onclick="playPreloadedAudio('Scene 2: Conflict')">Scene 2: Conflict</button>
+                <button onclick="playPreloadedAudio('Scene 3: Resolution')">Scene 3: Resolution</button>
+                <button onclick="pauseAudio()">Pause</button>
+                <button onclick="resetAudio()">Reset</button>
+            </div>
+        </section>
+
+        <!-- Dynamic Audio Description -->
+        <section id="dynamic-description">
+            <h2>Dynamic Audio Description</h2>
+            <textarea id="scene-text" placeholder="Enter scene description here..."></textarea>
+            <div>
+                <label for="speech-rate">Speed:</label>
+                <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+                <label for="speech-pitch">Pitch:</label>
+                <input type="range" id="speech-pitch" min="0" max="2" step="0.1" value="1">
+            </div>
+            <button onclick="playTextDescription()">Play Description</button>
+        </section>
+
+        <!-- Scene Navigation -->
+        <section id="scene-navigation">
+            <h2>Scene Navigation</h2>
+            <div id="timeline">
+                <button onclick="navigateScene('Scene 1: Introduction')">Scene 1</button>
+                <button onclick="navigateScene('Scene 2: Conflict')">Scene 2</button>
+                <button onclick="navigateScene('Scene 3: Resolution')">Scene 3</button>
+            </div>
+            <p id="current-scene"></p>
+        </section>
+
+        <!-- Eco-Friendly Tracking and Rewards -->
+        <section id="eco-friendly-tracking">
+            <h2>Eco-Friendly Tracking</h2>
+            <div>
+                <input type="text" id="userName" placeholder="Enter your name">
+                <input type="text" id="ecoAction" placeholder="Enter eco-friendly action">
+                <button onclick="addEcoAction()">Add Action</button>
+            </div>
+            <div>
+                <input type="text" id="getUserName" placeholder="Enter your name">
+                <button onclick="getUserData()">Get User Data</button>
+                <div id="userData"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Movie Audio Description System. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
